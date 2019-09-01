@@ -1,1 +1,1 @@
-Nuestro proyecto de filtros en JavaScript-
+Nuestro proyecto de filtros en JavaScript.
