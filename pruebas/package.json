@@ -1,0 +1,16 @@
+{
+  "name": "pruebas",
+  "version": "1.0.0",
+  "description": "Pruebas Generales de la App Filtros",
+  "main": "Pruebas.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha FiltrosPruebas/*.js --ui tdd"
+  },
+  "author": "",
+  "license": "ISC"
+}
