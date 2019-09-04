@@ -1,4 +1,4 @@
-##Pruebas de JS para el buen funcionamiento de los filtros
+## Pruebas de JS para el buen funcionamiento de los filtros
 
 Necesitamos tener instalado `nodejs`, `npm` y `mocha` con los siguientes comandos
 ```
