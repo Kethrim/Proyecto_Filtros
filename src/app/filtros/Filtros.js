@@ -14,7 +14,7 @@ var filtro = ( function () {
         imagen.onload = function () {
           contextOrig.drawImage(imagen,0,0);
           contextFilt.drawImage(imagen,0,0);
-        }
+        };
       };
 
       /*
