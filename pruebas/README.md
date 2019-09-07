@@ -8,7 +8,10 @@ $ sudo apt install mocha
 ```
 Dependencias usando `npm`
 ```
+npm i --save-dev mocha-jsdom
+npm install --save-dev jest
 npm install --save-dev chai-files
+npm install chai-dom
 ```
 Para luego poder correr las pruebas usando
 ```
