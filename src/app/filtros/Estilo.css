@@ -3,17 +3,15 @@ body {
 }
 
 #imgOriginal {
-	margin-top: 100px;
+	margin-top: 50px;
 	text-align: center;
 }
 
 #canvasOrig {
-	background-color: rgb(0,0,0);
-	height: 600px;
-	width: 800px;
+	background-color: rgb(242,176,194);
+	text-align: right;
 }
 #canvasFilt {
-	background-color: rgb(0,0,0);
-	height: 600px;
-	width: 800px;
+	background-color: rgb(242,176,194);
+	text-align: left;
 }
