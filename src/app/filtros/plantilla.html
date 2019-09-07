@@ -11,12 +11,18 @@
 
 <body>
 	<form enctype="multipart/form-data" action="uploader.php" method="POST">
-		<!-- <input name="uploadedfile" type="file" />
-		<input type="submit" value="Subir archivo" /> -->
 	</form>
-	<div id="imgOriginal" align='right'  >
-		<canvas id="canvasOrig" width="800" height="600"></canvas>
-		<canvas id="canvasFilt" width="800" height="600"></canvas>
+
+
+	<div id="imgOriginal"  >
+		<input type="file" id="file" accept="image/*" onchange="cargarImagen()"/>
+		<button style="margin: 10px 5px 25px 20px" id="filtroRojo">Filtro rojo </button>
+		<button style="margin-left: 100px" id="filtroAzul">Filtro azul </button>
+		<button style="margin-left: 100px" id="filtroVerde">Filtro verde </button>
+		<button style="margin-left: 100px" id="filtroMosaico">Filtro mosaico </button>
+		<br>
+		<canvas id="canvasOrig" height="600" width="800"></canvas>
+		<canvas id="canvasFilt" height="600" width="800"></canvas>
 	</div>
 
 
