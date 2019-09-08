@@ -1,8 +1,3 @@
-let rojo = document.getElementById('filtroRojo'),
-	azul = document.getElementById('filtroAzul'),
-	verde = document.getElementById('filtroVerde'),
-	mosaico = document.getElementById('filtroMosaico');
-
 /**
 * Función que carga una imagen.
 */
@@ -54,69 +49,84 @@ function imgFiltrada() {
 }
 
 /**
+*Función que aplica un filtro cambiando sus valores rgb.
+* @param arregloDePixeles- arregelo de pixeles con valores rgb que se cambiarán.
+* @param tam - tamanio del arreglo de pixeles.
+* @param rojo. número mayor que 0 para filtro rojo, 0 si se desea quitar el valor.
+* @param azul- número mayor que 0 para filtro azul, 0 si se desea quitar el valor.
+* @param verde - número mayor que 0 para filtro verde, 0 si se desea quitar el valor.
+*/
+function aplicaFiltro(arregloDePixeles, tam, rojo, verde, azul) {
+  let r = 0,v = 0,a = 0;
+  for (var i = 0; i < tam; i++) {
+   if (rojo!= 0) {
+     r = 2*arregloDePixeles[4*i];
+   } if (verde != 0) {
+     v = 2*arregloDePixeles[(4*i)+1];
+   } if (azul!= 0) {
+     a = 2*arregloDePixeles[(4*i)+2];
+   }
+    arregloDePixeles[4*i] = r - arregloDePixeles[4*i];
+    arregloDePixeles[4*i+1] = v - arregloDePixeles[4*i+1];
+    arregloDePixeles[4*i+2] = a - arregloDePixeles[4*i+2];
+  }
+}
+
+/**
  * Función que aplica el filtro rojo al darle click al botón "Filtro rojo".
  */
-rojo.onclick = function() {
+function rojo () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-
-	for (var i = 0; i < numPixeles; i++) {
-		pixeles[(4 * i) + 1] = 0;
-		pixeles[(4 * i) + 2] = 0;
-	}
+    aplicaFiltro(pixeles,numPixeles,1,0,0);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
 
 /**
  * Función que aplica el filtro azul al darle click al botón "Filtro azul".
  */
-azul.onclick = function() {
+function azul () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-
-	for (var i = 0; i < numPixeles; i++) {
-		pixeles[(4 * i)] = 0;
-		pixeles[(4 * i) + 1] = 0;
-	}
+    aplicaFiltro(pixeles,numPixeles,0,0,1);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
-};
+}
 
 /**
  * Función que aplica el filtro verde al darle click al botón "Filtro verde".
  */
-verde.onclick = function() {
+function verde () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-
-	for (var i = 0; i < numPixeles; i++) {
-		pixeles[(4 * i)] = 0;
-		pixeles[(4 * i) + 2] = 0;
-	}
+    aplicaFiltro(pixeles,numPixeles,0,1,0);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
-};
+}
 
 /**
  * Función que aplica el mosaico al darle click al botón "Filtro Mosaico".
  */
-mosaico.onclick = function() {
+function mosaico () {
+  let n = prompt("Largo");
+  let m = prompt("Ancho");
+  document.getElementById('mosaico');
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		largo = arregloDePixeles.width,
 		alto = arregloDePixeles.height;
 
-	let n = 20, // el eje x
-      m = 60, // el eje y
-      pixPorCuadrante = (largo * alto) / (n * m);
-      
+	let pixPorCuadrante = (largo * alto) / (n * m);
+  // n = 20, // el eje x
+  //     m = 60, // el eje y
+
 	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += largo / n) {
 		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += alto / m) {
       let promRojo = 0,
           promVerde = 0,
           promAzul = 0;
-          
+
       for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
 				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + (largo / n); j++) {
           promRojo += pixeles[(4 * j)];
@@ -138,38 +148,3 @@ mosaico.onclick = function() {
 	}
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 };
-
-/*
-      public.filtroM = function (arrayPixeles,promRojo, promAzul, promVerde, inicio, fin) {
-        console.log("El limite es "+fin);
-        for (var i = inicio; i < fin; i+=4) {
-          arrayPixeles[i] = promRojo;
-          arrayPixeles[i+1] = promVerde;
-          arrayPixeles[i+2] = promAzul;
-          //console.log("i "+i);
-        }
-        console.log("Color "+arrayPixeles[0]);
-      }
-
-      public.mosaico = function (tam) {
-        var datosDeImagen = filtro.obtenerDatosDeImagen(),
-            pixeles = datosDeImagen.data,
-            numPixeles = datosDeImagen.width * datosDeImagen.height,
-            limite = numPixeles/tam;
-
-            console.log("Limite " + limite);
-
-            for (var i = 0; i < numPixeles; i++) {
-              var rojo = 0, azul = 0, verde = 0;
-              for (var j = i; j < (limite+i); j++) {
-                rojo += pixeles[4*j];
-                verde += pixeles[(4*j)+1];
-                azul += pixeles[(4*j)+2];
-              }
-              var promRojo = rojo/limite, promAzul = azul/limite, promVerde = verde/limite;
-              console.log("Rojo "+promRojo+" azul "+promAzul+" verde "+promVerde);
-              filtro.filtroM(pixeles,promRojo, promAzul, promVerde,i,limite+i);
-            }
-            contextFilt.putImageData(datosDeImagen,0,0);
-      };
-*/
