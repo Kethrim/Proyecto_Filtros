@@ -4,17 +4,18 @@ let rojo = document.getElementById('filtroRojo'),
 	mosaico = document.getElementById('filtroMosaico');
 
 /**
- * Función que carga una imagen.
- */
-function cargarImagen() {
-	let archivo = document.getElementById("file").files[0];
-	let lector = new FileReader();
-	if (archivo) {
-		lector.readAsDataURL(archivo);
-		lector.onload = function() {
-			leerImagen(lector.result);
-		};
-	}
+* Función que carga una imagen.
+*/
+function cargarImagen(){
+  let archivo = document.getElementById("file").files[0];
+  let lector = new FileReader();
+  if (archivo) {
+    lector.readAsDataURL(archivo);
+    lector.onload = function(){
+      leerImagen(lector.result);
+      imagenCargada = lector.result;
+    }
+  }
 }
 
 /**
