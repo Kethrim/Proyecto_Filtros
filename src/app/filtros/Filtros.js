@@ -4,18 +4,18 @@ let rojo = document.getElementById('filtroRojo'),
 	mosaico = document.getElementById('filtroMosaico');
 
 /**
-* Función que carga una imagen.
-*/
-function cargarImagen(){
-  let archivo = document.getElementById("file").files[0];
-  let lector = new FileReader();
-  if (archivo) {
-    lector.readAsDataURL(archivo);
-    lector.onload = function(){
-      leerImagen(lector.result);
-      imagenCargada = lector.result;
-    }
-  }
+ * Función que carga una imagen.
+ */
+function cargarImagen() {
+	let archivo = document.getElementById("file").files[0];
+	let lector = new FileReader();
+	if (archivo) {
+		lector.readAsDataURL(archivo);
+		lector.onload = function() {
+			leerImagen(lector.result);
+			imagenCargada = lector.result;
+		}
+	}
 }
 
 /**
@@ -108,25 +108,25 @@ mosaico.onclick = function() {
 		alto = arregloDePixeles.height;
 
 	let n = 20, // el eje x
-      m = 60, // el eje y
-      pixPorCuadrante = (largo * alto) / (n * m);
-      
+		m = 20, // el eje y
+		pixPorCuadrante = (largo * alto) / (n * m);
+
 	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += largo / n) {
 		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += alto / m) {
-      let promRojo = 0,
-          promVerde = 0,
-          promAzul = 0;
-          
-      for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
+			let promRojo = 0,
+				promVerde = 0,
+				promAzul = 0;
+
+			for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
 				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + (largo / n); j++) {
-          promRojo += pixeles[(4 * j)];
-          promVerde += pixeles[(4 * j) + 1];
-          promAzul += pixeles[(4 * j) + 2];
+					promRojo += pixeles[(4 * j)];
+					promVerde += pixeles[(4 * j) + 1];
+					promAzul += pixeles[(4 * j) + 2];
 				}
 			}
-      promRojo /= pixPorCuadrante;
-      promVerde /= pixPorCuadrante;
-      promAzul /= pixPorCuadrante;
+			promRojo /= pixPorCuadrante;
+			promVerde /= pixPorCuadrante;
+			promAzul /= pixPorCuadrante;
 			for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
 				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + (largo / n); j++) {
 					pixeles[(4 * j)] = promRojo;
@@ -138,38 +138,3 @@ mosaico.onclick = function() {
 	}
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 };
-
-/*
-      public.filtroM = function (arrayPixeles,promRojo, promAzul, promVerde, inicio, fin) {
-        console.log("El limite es "+fin);
-        for (var i = inicio; i < fin; i+=4) {
-          arrayPixeles[i] = promRojo;
-          arrayPixeles[i+1] = promVerde;
-          arrayPixeles[i+2] = promAzul;
-          //console.log("i "+i);
-        }
-        console.log("Color "+arrayPixeles[0]);
-      }
-
-      public.mosaico = function (tam) {
-        var datosDeImagen = filtro.obtenerDatosDeImagen(),
-            pixeles = datosDeImagen.data,
-            numPixeles = datosDeImagen.width * datosDeImagen.height,
-            limite = numPixeles/tam;
-
-            console.log("Limite " + limite);
-
-            for (var i = 0; i < numPixeles; i++) {
-              var rojo = 0, azul = 0, verde = 0;
-              for (var j = i; j < (limite+i); j++) {
-                rojo += pixeles[4*j];
-                verde += pixeles[(4*j)+1];
-                azul += pixeles[(4*j)+2];
-              }
-              var promRojo = rojo/limite, promAzul = azul/limite, promVerde = verde/limite;
-              console.log("Rojo "+promRojo+" azul "+promAzul+" verde "+promVerde);
-              filtro.filtroM(pixeles,promRojo, promAzul, promVerde,i,limite+i);
-            }
-            contextFilt.putImageData(datosDeImagen,0,0);
-      };
-*/
