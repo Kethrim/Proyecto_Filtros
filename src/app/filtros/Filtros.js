@@ -115,11 +115,8 @@ function mosaico () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		largo = arregloDePixeles.width,
-		alto = arregloDePixeles.height;
-
-	let pixPorCuadrante = (largo * alto) / (n * m);
-  // n = 20, // el eje x
-  //     m = 60, // el eje y
+		alto = arregloDePixeles.height,
+    pixPorCuadrante = (largo * alto) / (n * m);
 
 	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += largo / n) {
 		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += alto / m) {
