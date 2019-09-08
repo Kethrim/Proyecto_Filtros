@@ -7,10 +7,11 @@
  * 				 Trad Mateos Kethrim Guadalpe
  * ----
  */
-var chai = require('chai'),
+var chai = require('chai');
     expect = chai.expect; // Obtenemos las funciones 'expect' de chai
 var app = require('../../src/app/filtros/Filtros.js'); // el archivo a probar
-var jsdom = require('mocha-jsdom'); 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 /**
  * Prueba basica (como plantilla para otras pruebas)
