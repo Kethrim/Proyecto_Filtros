@@ -76,6 +76,7 @@ function aplicaFiltro(arregloDePixeles, tam, rojo, verde, azul) {
  * Función que aplica el filtro rojo al darle click al botón "Filtro rojo".
  */
 function rojo () {
+
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
@@ -117,24 +118,26 @@ function mosaico () {
 		largo = arregloDePixeles.width,
 		alto = arregloDePixeles.height,
     pixPorCuadrante = (largo * alto) / (n * m);
-	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += largo / n) {
-		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += alto / m) {
+	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += Math.trunc(largo / n)) {
+		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += Math.trunc(alto / m)) {
       let promRojo = 0,
           promVerde = 0,
           promAzul = 0;
-
-      for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + (largo / n); j++) {
+			// Leemos los datos
+      for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / m); i++) {
+				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / n); j++) {
 					promRojo += pixeles[(4 * j)];
 					promVerde += pixeles[(4 * j) + 1];
 					promAzul += pixeles[(4 * j) + 2];
 				}
 			}
+			// calculamos promedios
 			promRojo /= pixPorCuadrante;
 			promVerde /= pixPorCuadrante;
 			promAzul /= pixPorCuadrante;
-			for (let i = desplazamiento_y; i < desplazamiento_y + (alto / m); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + (largo / n); j++) {
+			// llenamos los pixeles con el promedio
+			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / m); i++) {
+				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / n); j++) {
 					pixeles[(4 * j)] = promRojo;
 					pixeles[(4 * j) + 1] = promVerde;
 					pixeles[(4 * j) + 2] = promAzul;
