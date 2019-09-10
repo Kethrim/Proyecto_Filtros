@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+    <!--  Cosas necesarias de Jasmine para probar  -->
+    <link rel="shortcut icon" type="image/png" href="./jasmine/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="./jasmine/jasmine.css">
+    <script type="text/javascript" src="./jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="./jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="./jasmine/boot.js"></script>
+
+    <!--  La interfaz para ver las pruebas  -->
+    <script src="spec/example.spec.js"></script>
+    
+    <!--  Archivo a probar  -->
+    <script src="../src/app/filtros/Filtros.js"></script>
+    
+    <!--  Creamos lo necesario para probar  -->
+    <div id="imgOriginal"  >
+		<input type ="file" id="file" accept="image/*" onchange="cargarImagen()"/>
+		<input type = "button" style="margin: 10px 5px 25px 20px" value="Filtro rojo" onclick="rojo()"/>
+		<input type = "button" style="margin-left: 100px" value="Filtro azul" onclick="azul()"/>
+		<input type = "button" style="margin-left: 100px" value="Filtro verde" onclick="verde()"/>
+		<input type = "button" id="mosaico" style="margin-left: 100px" value="Filtro mosaico" onclick="mosaico();"/>        
+		<canvas id="canvasOrig" height="600" width="800"></canvas>
+		<canvas id="canvasFilt" height="600" width="800"></canvas>
+	</div>
+    
+</head>
+
+</html>
