@@ -5,8 +5,16 @@
 	<meta charset="uft-8">
 	<title>Filtros</title>
 	<link rel="stylesheet" href="Estilo.css">
-	<div id="imgOriginal"  >
-		<input type ="file" id="file" accept="image/*" onchange="cargarImagen()"/>
+	<div id="imgOriginal">
+		
+		<!--		-->
+		<input type ="file" id="archivos" accept="image/*" onchange="auxiliar();"/>
+		<script>
+			function auxiliar() {
+				cargarImagen(document.getElementById("archivos").files[0]);
+			}
+		</script>
+		
 		<input type = "button" style="margin: 10px 5px 25px 20px" value="Filtro rojo" onclick="rojo()"/>
 		<input type = "button" style="margin-left: 100px" value="Filtro azul" onclick="azul()"/>
 		<input type = "button" style="margin-left: 100px" value="Filtro verde" onclick="verde()"/>
