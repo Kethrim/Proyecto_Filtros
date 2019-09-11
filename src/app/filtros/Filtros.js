@@ -1,14 +1,12 @@
 /**
  * Función que carga una imagen.
  */
-function cargarImagen() {
-	let archivo = document.getElementById("file").files[0];
+function cargarImagen(archivo) {
 	let lector = new FileReader();
 	if (archivo) {
 		lector.readAsDataURL(archivo);
 		lector.onload = function() {
 			leerImagen(lector.result);
-			imagenCargada = lector.result;
 		};
 	}
 }
@@ -37,6 +35,15 @@ function obtenerArregloDePixeles() {
 	let c = document.getElementById('canvasOrig');
 	let ctx = c.getContext('2d');
 	return ctx.getImageData(0, 0, canvasOrig.width, canvasOrig.height);
+}
+
+/**
+ * Función que obtiene el arreglo de pixeles de la imagen filtrada.
+ */
+function obtenerArregloDePixelesImagenFiltrada(){
+	let c = document.getElementById('canvasFilt');
+	let ctx = c.getContext('2d');
+	return ctx.getImageData(0,0,canvasFilt.width, canvasFilt.height);	
 }
 
 /**
