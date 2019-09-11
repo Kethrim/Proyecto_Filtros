@@ -14,18 +14,15 @@
     
     <!--  Archivo a probar  -->
     <script src="../src/app/filtros/Filtros.js"></script>
-    
-    <!--  Creamos lo necesario para probar  -->
-    <div id="imgOriginal"  >
-		<input type ="file" id="file" accept="image/*" onchange="cargarImagen()"/>
-		<input type = "button" style="margin: 10px 5px 25px 20px" value="Filtro rojo" onclick="rojo()"/>
-		<input type = "button" style="margin-left: 100px" value="Filtro azul" onclick="azul()"/>
-		<input type = "button" style="margin-left: 100px" value="Filtro verde" onclick="verde()"/>
-		<input type = "button" id="mosaico" style="margin-left: 100px" value="Filtro mosaico" onclick="mosaico();"/>        
-		<canvas id="canvasOrig" height="600" width="800"></canvas>
-		<canvas id="canvasFilt" height="600" width="800"></canvas>
-	</div>
+
     
 </head>
 
+    <!--  Creamos lo necesario para probar  -->
+    <div id="imgOriginal"  >
+		<!--<canvas id="canvasOrig" height="600" width="800"></canvas>-->
+		<!--<canvas id="canvasFilt" height="600" width="800"></canvas>-->
+		<canvas id="canvasOrig" height="600" width="800" style= "display: none" ></canvas>
+		<canvas id="canvasFilt" height="600" width="800" style= "display: none" ></canvas>
+	</div>
 </html>
