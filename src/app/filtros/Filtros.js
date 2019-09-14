@@ -1,8 +1,9 @@
 /**
  * Función que carga una imagen.
  */
-function cargarImagen(archivo) {
-	let lector = new FileReader();
+function cargarImagen() {
+	let archivo = document.getElementById("archivos").files[0],
+		lector = new FileReader();
 	if (archivo) {
 		lector.readAsDataURL(archivo);
 		lector.onload = function() {
@@ -56,38 +57,13 @@ function imgFiltrada() {
 }
 
 /**
-*Función que aplica un filtro cambiando sus valores rgb.
-* @param arregloDePixeles- arregelo de pixeles con valores rgb que se cambiarán.
-* @param tam - tamanio del arreglo de pixeles.
-* @param rojo. número mayor que 0 para filtro rojo, 0 si se desea quitar el valor.
-* @param azul- número mayor que 0 para filtro azul, 0 si se desea quitar el valor.
-* @param verde - número mayor que 0 para filtro verde, 0 si se desea quitar el valor.
-*/
-function aplicaFiltro(arregloDePixeles, tam, rojo, verde, azul) {
-  let r = 0,v = 0,a = 0;
-  for (var i = 0; i < tam; i++) {
-   if (rojo!= 0) {
-     r = 2*arregloDePixeles[4*i];
-   } if (verde != 0) {
-     v = 2*arregloDePixeles[(4*i)+1];
-   } if (azul!= 0) {
-     a = 2*arregloDePixeles[(4*i)+2];
-   }
-    arregloDePixeles[4*i] = r - arregloDePixeles[4*i];
-    arregloDePixeles[4*i+1] = v - arregloDePixeles[4*i+1];
-    arregloDePixeles[4*i+2] = a - arregloDePixeles[4*i+2];
-  }
-}
-
-/**
  * Función que aplica el filtro rojo al darle click al botón "Filtro rojo".
  */
 function rojo () {
-
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-    aplicaFiltro(pixeles,numPixeles,1,0,0);
+    aplicaFiltroRojo(pixeles,numPixeles);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
 
@@ -98,7 +74,7 @@ function azul () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-    aplicaFiltro(pixeles,numPixeles,0,0,1);
+    aplicaFiltroAzul(pixeles,numPixeles,0,0,1);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
 
@@ -109,7 +85,7 @@ function verde () {
 	let arregloDePixeles = obtenerArregloDePixeles(),
 		pixeles = arregloDePixeles.data,
 		numPixeles = arregloDePixeles.width * arregloDePixeles.height;
-    aplicaFiltro(pixeles,numPixeles,0,1,0);
+    aplicaFiltroVerde(pixeles,numPixeles,0,1,0);
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
 
@@ -117,40 +93,14 @@ function verde () {
  * Función que aplica el mosaico al darle click al botón "Filtro Mosaico".
  */
 function mosaico () {
-  let n = prompt("Largo");
-  let m = prompt("Ancho");
-  document.getElementById('mosaico');
-	let arregloDePixeles = obtenerArregloDePixeles(),
-		pixeles = arregloDePixeles.data,
-		largo = arregloDePixeles.width,
-		alto = arregloDePixeles.height,
-    pixPorCuadrante = (largo * alto) / (n * m);
-	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += Math.trunc(largo / n)) {
-		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += Math.trunc(alto / m)) {
-      let promRojo = 0,
-          promVerde = 0,
-          promAzul = 0;
-			// Leemos los datos
-      for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / m); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / n); j++) {
-					promRojo += pixeles[(4 * j)];
-					promVerde += pixeles[(4 * j) + 1];
-					promAzul += pixeles[(4 * j) + 2];
-				}
-			}
-			// calculamos promedios
-			promRojo /= pixPorCuadrante;
-			promVerde /= pixPorCuadrante;
-			promAzul /= pixPorCuadrante;
-			// llenamos los pixeles con el promedio
-			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / m); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / n); j++) {
-					pixeles[(4 * j)] = promRojo;
-					pixeles[(4 * j) + 1] = promVerde;
-					pixeles[(4 * j) + 2] = promAzul;
-				}
-			}
-		}
+  let n = prompt("Largo",5),
+		m = prompt("Ancho",5),
+		arregloDePixeles = obtenerArregloDePixeles();
+	try{
+		aplicaFiltroMosaico(arregloDePixeles, n, m);		
+	} catch (error){
+		alert(error);
 	}
+	
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
