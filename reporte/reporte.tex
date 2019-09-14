@@ -1,15 +1,15 @@
 \documentclass{article}
-
+\usepackage{graphicx}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc} % Acentos
-\usepackage{tikz}
-\usepackage[
-  top=3cm,
-  bottom=3cm,
-  left=2cm,
-  right=2cm,
-  heightrounded,
-]{geometry}
+%\usepackage{tikz}
+%\usepackage[
+%  top=3cm,
+%  bottom=3cm,
+%  left=2cm,
+%  right=2cm,
+%  heightrounded,
+%]{geometry}
 
 \title{Tarea 2}
 \author{Martínez Santana Brayan\\
@@ -28,11 +28,12 @@ Escribir un programa que pueda aplicar un filtro de color rojo, verde y azul a u
 \end{enumerate}
 \section{Mejor alternativa} Decidimos utilizar JavaScript por la facilidad que hay para hacer botones en una pagina web y que cualquier navegador puede ejecutar el programa.
 
-\section{Diagrama de flujo}
-
+\section{Diagrama de flujo} El programa inicia con los botones correspondientes a cargar archivos y aplicar filtros, lo primero que hace el usuario es cargar la imagen, nosotros la posicionamos en la página y accedemos a su arreglo de pixeles con valores rgb, al cual podremos acceder mediante en un método. Posteriormente el usuario podrá escoger un filtro: rojo, azul,verde y mosaico, en caso de que escoga el último se le pedirá que ingrese el número de pixeles que quiere por largo y ancho. El programa termina cuando la imagen se muestra filtrada. El usuario puede usar otros filtros y cargar nuevas imágenes hasta que cierre la página.
+	\begin{center}
+		\includegraphics[width=\linewidth]{DiagramaDeFlujo}
+	\end{center}
 
 \section{Pensamiento a futuro}
 Podemos agregar la opción de que se puedan arrastrar los archivos a la pagina web para trabajar con ellos.\\
 También sería muy probable que agreguemos el archivo a una pagina web convencional y que pueda funcionar ahí junto con otros archivos JavaScript.
-
 \end{document}
