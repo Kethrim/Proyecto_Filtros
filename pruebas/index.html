@@ -9,20 +9,15 @@
     <script type="text/javascript" src="./jasmine/jasmine-html.js"></script>
     <script type="text/javascript" src="./jasmine/boot.js"></script>
 
-    <!--  La interfaz para ver las pruebas  -->
-    <script src="spec/example.spec.js"></script>
+    <!--  Archivos a probar  -->
+    <script src="spec/filtro.azul.spec.js"></script>
+    <script src="spec/filtro.rojo.spec.js"></script>
+    <script src="spec/filtro.verde.spec.js"></script>
+    <script src="spec/filtro.mosaico.spec.js"></script>
+    <script src="spec/filtro.general.spec.js"></script>
     
-    <!--  Archivo a probar  -->
-    <script src="../src/app/filtros/Filtros.js"></script>
-
+    <!-- Adjuntamos las funciones -->
+    <script src="../src/app/filtros/funcionesBase.js"></script>
     
 </head>
-
-    <!--  Creamos lo necesario para probar  -->
-    <div id="imgOriginal"  >
-		<!--<canvas id="canvasOrig" height="600" width="800"></canvas>-->
-		<!--<canvas id="canvasFilt" height="600" width="800"></canvas>-->
-		<canvas id="canvasOrig" height="600" width="800" style= "display: none" ></canvas>
-		<canvas id="canvasFilt" height="600" width="800" style= "display: none" ></canvas>
-	</div>
 </html>
