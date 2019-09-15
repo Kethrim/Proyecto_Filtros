@@ -1,4 +1,10 @@
-xdescribe('Filtro General', () => {
+/**
+ * Progama para probar el funcionamiento de la función aplica filtro
+ * 
+ * @author Trad Mateos Kethrim, Mártinez Santana Brayan
+ * @version 1
+ */
+describe('Filtro General', () => {
 	let arregloDePixeles,
 		numPixeles;
 
