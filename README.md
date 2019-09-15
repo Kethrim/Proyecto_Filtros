@@ -15,4 +15,4 @@ Las imágenes que nos pidieron probar están en la carpeta imágenes (src/imagen
 
 ----
 ## Ver pruebas:
-> Para poder ejecutar las pruebas es necesario ir a pruebas y abrir el archivo index.html con chrome. 
+> Para poder ejecutar las pruebas es necesario ir a la carpeta pruebas/ y abrir el archivo index.html con chrome. 
