@@ -16,7 +16,7 @@ function aplicaFiltro(arregloDePixeles, tam, rojo, verde, azul) {
 	} else if (arregloDePixeles.length% 4 !== 0) {
 		throw new URIError('El tamaño del arreglo no es multiplo de 4');		
 	} else if (arregloDePixeles.length/4 !== tam) {
-		throw new URIError('El tamañod el arreglo debe ser el mismo');
+		throw new URIError('El tamaño del arreglo debe ser el mismo');
 	}
 	
 	let r = 0,
@@ -72,7 +72,8 @@ function aplicaFiltroVerde(arregloDePixeles, numPixeles) {
  * @param m division a lo ancho de la imagen
  */
 function aplicaFiltroMosaico(arregloDePixeles, n, m) {
-	if (n<=0 || m<=0) throw "Mete valores correctos";
+	if (n<=0 || m<=0) throw "Ingresa valores positivos.";
+	if (n>=500 || m>=500) throw "Ingresa valores mas pequenos."
 	let pixeles = arregloDePixeles.data,
 		largo = arregloDePixeles.width,
 		alto = arregloDePixeles.height,
