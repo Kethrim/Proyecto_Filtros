@@ -9,7 +9,8 @@
 - [x] jpg/jpeg
 
 ----
-## Biografía:
+## Bibliografía:
+- [Números aleatorios](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Math/random)
 
 - [Cargar una imgen en JavaScript](https://es.stackoverflow.com/questions/164359/cargar-una-imagen-en-html-y-javascript)
 
