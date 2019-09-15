@@ -7,6 +7,7 @@ function cargarImagen() {
 	if (archivo) {
 		lector.readAsDataURL(archivo);
 		lector.onload = function() {
+			limpiaCanvas();
 			leerImagen(lector.result);
 			borraImagenFiltrada();
 		};
@@ -58,6 +59,23 @@ function imgFiltrada() {
 }
 
 /**
+ * Función que borra la imagen filtrada.
+ */
+function borraImagenFiltrada(){
+		let canvasFilt = document.getElementById("canvasFilt"),
+				ctx = canvasFilt.getContext('2d');
+		ctx.clearRect(0,0,canvasFilt.width, canvasFilt.height);	
+}
+
+/*
+ * Función que limpia el canvas antes de agregar una imagen.
+ */
+function limpiaCanvas(){
+let canvasOrig = document.getElementById("canvasOrig"),
+				ctx = canvasOrig.getContext('2d');
+		ctx.clearRect(0,0,canvasOrig.width, canvasOrig.height);		
+}
+/**
  * Función que aplica el filtro rojo al darle click al botón "Filtro rojo".
  */
 function rojo () {
@@ -90,14 +108,7 @@ function verde () {
 	imgFiltrada().putImageData(arregloDePixeles, 0, 0);
 }
 
-/**
- * Función que borra la imagen filtrada.
- */
-function borraImagenFiltrada(){
-		let canvasFilt = document.getElementById("canvasFilt"),
-				ctx = canvasFilt.getContext('2d');
-		ctx.clearRect(0,0,canvasFilt.width, canvasFilt.height);	
-}
+
 /**
  * Función que aplica el mosaico al darle click al botón "Filtro Mosaico".
  * No aplica el filtro si los valores de largo y ancho son menores o iguales a 0 y si son mayores a 500, cada uno. 
