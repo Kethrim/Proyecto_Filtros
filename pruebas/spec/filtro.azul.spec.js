@@ -3,14 +3,23 @@ describe('Filtro azul pruebas', () => {
 		numPixeles;
 
 	beforeEach(function () {
-		arregloDePixeles = new Uint8ClampedArray(8 * 4);
+		arregloDePixeles = new Uint8ClampedArray(400 * 4);
 		numPixeles = arregloDePixeles.length / 4;
+		// Llenamos el arreglo con colores al azar del 0 al 255
+		for (let i = 0; i < numPixeles; i++) {
+			console.log(i * 4 +" " + i*4+1 + " " + i*4+2);
+			arregloDePixeles[i * 4] = Math.trunc(Math.random()*(256));
+			arregloDePixeles[i * 4 + 1] = Math.trunc(Math.random()*(256));
+			arregloDePixeles[i * 4 + 2] = Math.trunc(Math.random()*(256));
+		}
 	});
 
-	it('usando un arreglo de pixeles vacio el filtro azul no se hace', () => {
-		expect(function () { aplicaFiltroAzul(arregloDePixeles, 0) }).toThrowError(RangeError, "El tamaño debe ser positivo");
-		expect(function () { aplicaFiltroAzul(arregloDePixeles, -3) }).toThrowError(RangeError, "El tamaño debe ser positivo");
-		expect(function () { aplicaFiltroAzul(arregloDePixeles, 100) }).toThrowError(URIError, "El tamañod el arreglo debe ser el mismo");
+	it('aplica el filtro correctamente', () => {
+		aplicaFiltroAzul(arregloDePixeles,numPixeles);
+		for (let i = 0; i < numPixeles; i++) {
+			expect( arregloDePixeles[i*4] ).toBe(0); // valor en rojo
+			expect( arregloDePixeles[i*4+1] ).toBe(0); // valor en verde
+		}
 	});
 
 });
