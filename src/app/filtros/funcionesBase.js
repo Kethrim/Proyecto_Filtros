@@ -16,13 +16,13 @@ function aplicaFiltro(arregloDePixeles, tam, rojo, verde, azul) {
 	} else if (arregloDePixeles.length% 4 !== 0) {
 		throw new URIError('El tamaño del arreglo no es multiplo de 4');		
 	} else if (arregloDePixeles.length/4 !== tam) {
-		throw new URIError('El tamañod el arreglo debe ser el mismo');
+		throw new URIError('El tamaño del arreglo debe ser el mismo');
 	}
 	
 	let r = 0,
 		v = 0,
 		a = 0;
-	for (var i = 0; i < tam; i++) {
+	for (let i = 0; i < tam; i++) {
 		if (rojo != 0) {
 			r = 2 * arregloDePixeles[4 * i];
 		}
