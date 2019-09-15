@@ -1,5 +1,5 @@
 /**
- * Progama para probar el funcionamiento de la función aplica rojo
+ * Progama para probar el mal funcionamiento de la función filtro
  * 
  * Simularemos tener un arreglo de pixeles y ejecutaremos el codigo para saber si se llenan correctamente
  * 
@@ -7,19 +7,7 @@
  * @version 1
  */
 describe('Filtro mosaico pruebas', () => {
-	let arregloDePixeles,
-		numPixeles;
-
-	beforeEach(function () {
-		arregloDePixeles = new Uint8ClampedArray(400 * 4);
-		numPixeles = arregloDePixeles.length / 4;
-		// Llenamos el arreglo con colores al azar del 0 al 255
-		for (let i = 0; i < numPixeles; i++) {
-			arregloDePixeles[i * 4] = Math.trunc(Math.random() * (256));
-			arregloDePixeles[i * 4 + 1] = Math.trunc(Math.random() * (256));
-			arregloDePixeles[i * 4 + 2] = Math.trunc(Math.random() * (256));
-		}
-	});
+	let arregloDePixeles = new Uint8ClampedArray(400 * 4);
 
 	it('no aplica el filtro cuando los parametros son negativos ni cuando ceros', () => {
 		expect(function () { aplicaFiltroMosaico(arregloDePixeles, 0, 0) }).toThrowError(RangeError);
