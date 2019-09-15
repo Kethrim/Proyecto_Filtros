@@ -66,27 +66,27 @@ function aplicaFiltroVerde(arregloDePixeles, numPixeles) {
 }
 
 /**
- *Función que aplica un filtro mosaico de cuadrosVerticales por cuadrosHorizontales dimenciones.
+ *Función que aplica un filtro mosaico de cuadrosHorizontales por cuadrosVerticales dimenciones.
  * @param arregloDePixeles- arregelo de pixeles con valores rgb que se cambiarán.
- * @param cuadrosVerticales division a lo largo de la imagen
- * @param cuadrosHorizontales division a lo ancho de la imagen
+ * @param cuadrosHorizontales division a lo largo de la imagen
+ * @param cuadrosVerticales division a lo ancho de la imagen
  */
-function aplicaFiltroMosaico(arregloDePixeles, cuadrosVerticales, cuadrosHorizontales) {
-	if (cuadrosVerticales<=0 || cuadrosHorizontales<=0) throw "Ingresa valores positivos.";
-	if (cuadrosVerticales>=500 || cuadrosHorizontales>=500) throw "Ingresa valores mas pequenos."
+function aplicaFiltroMosaico(arregloDePixeles, cuadrosHorizontales, cuadrosVerticales) {
+	if (cuadrosHorizontales<=0 || cuadrosVerticales<=0) throw new RangeError("Ingresa valores positivos.");
+	if (cuadrosHorizontales>=500 || cuadrosVerticales>=500) throw new RangeError("Ingresa valores mas pequenos.");
 	let pixeles = arregloDePixeles.data,
 		largo = arregloDePixeles.width,
 		alto = arregloDePixeles.height,
-		pixPorCuadrante = (largo * alto) / (cuadrosVerticales * cuadrosHorizontales);
+		pixPorCuadrante = (largo * alto) / (cuadrosHorizontales * cuadrosVerticales);
 
-	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += Math.trunc(largo / cuadrosVerticales)) {
-		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += Math.trunc(alto / cuadrosHorizontales)) {
+	for (let desplazamiento_x = 0; desplazamiento_x < largo; desplazamiento_x += Math.trunc(largo / cuadrosHorizontales)) {
+		for (let desplazamiento_y = 0; desplazamiento_y < alto; desplazamiento_y += Math.trunc(alto / cuadrosVerticales)) {
 			let promRojo = 0,
 				promVerde = 0,
 				promAzul = 0;
 			// Leemos los datos
-			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / cuadrosHorizontales); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / cuadrosVerticales); j++) {
+			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / cuadrosVerticales); i++) {
+				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / cuadrosHorizontales); j++) {
 					promRojo += pixeles[(4 * j)];
 					promVerde += pixeles[(4 * j) + 1];
 					promAzul += pixeles[(4 * j) + 2];
@@ -97,8 +97,8 @@ function aplicaFiltroMosaico(arregloDePixeles, cuadrosVerticales, cuadrosHorizon
 			promVerde /= pixPorCuadrante;
 			promAzul /= pixPorCuadrante;
 			// llenamos los pixeles con el promedio
-			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / cuadrosHorizontales); i++) {
-				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / cuadrosVerticales); j++) {
+			for (let i = desplazamiento_y; i < desplazamiento_y + Math.trunc(alto / cuadrosVerticales); i++) {
+				for (let j = desplazamiento_x + i * 800; j < desplazamiento_x + (i * 800) + Math.trunc(largo / cuadrosHorizontales); j++) {
 					pixeles[(4 * j)] = promRojo;
 					pixeles[(4 * j) + 1] = promVerde;
 					pixeles[(4 * j) + 2] = promAzul;

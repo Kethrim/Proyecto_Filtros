@@ -112,5 +112,5 @@ function mosaico () {
 	} catch (error){
 		alert(error);
 		borraImagenFiltrada();
-	}	
+	}
 }
