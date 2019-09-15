@@ -72,7 +72,8 @@ function aplicaFiltroVerde(arregloDePixeles, numPixeles) {
  * @param m division a lo ancho de la imagen
  */
 function aplicaFiltroMosaico(arregloDePixeles, n, m) {
-	if (n<=0 || m<=0) throw "Mete valores correctos";
+	if (n<=0 || m<=0) throw "Ingresa valores positivos.";
+	if (n>=500 || m>=500) throw "Ingresa valores mas pequenos."
 	let pixeles = arregloDePixeles.data,
 		largo = arregloDePixeles.width,
 		alto = arregloDePixeles.height,
